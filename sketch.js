@@ -7,6 +7,19 @@ function setup() {
   angleMode(DEGREES);
   createCanvas(windowWidth, windowHeight);
 
+  for (var i = 0; i < amountOfBalls; i++) {
+    //an instance of myBalls
+    var tempx = random() * windowWidth;
+    var tempy = random() * windowHeight;
+    var diameter = 60;
+
+    var tempBall = new Ball(tempx, tempy, diameter);
+
+    allMyBalls.push(tempBall);
+  }
+}
+
+function draw() {
   //basketball court
   background('#FF9505');
   push();
@@ -21,21 +34,6 @@ function setup() {
   pop();
   line(windowWidth / 2, 0, windowWidth / 2, windowHeight);
   pop();
-
-
-  for (var i = 0; i < amountOfBalls; i++) {
-    //an instance of myBalls
-    var tempx = random() * windowWidth;
-    var tempy = random() * windowHeight;
-    var diameter = 60;
-
-    var tempBall = new Ball(tempx, tempy, diameter);
-
-    allMyBalls.push(tempBall);
-  }
-}
-
-function draw() {
 
   for (var i = 0; i < allMyBalls.length; i++) {
 
@@ -81,7 +79,7 @@ function Ball(_x, _y, _diameter) {
     //basket ball
     translate(this.x, this.y);
     ellipse(0, 0, this.size);
-    
+
     //black lines of the basket balls
     noFill();
     arc(-this.size / 2, 0, 40, 40, -62, 68);
